@@ -10,6 +10,7 @@ public class BinaryTree {
 
     private TreeNode buildTree(int[] pre, int[]in){
         //impl build tree
+        return null;
     }
 
     private void printInOrder(TreeNode node){
