@@ -8,9 +8,40 @@ public class BinaryTree {
     private static Set<TreeNode> set = new HashSet<>();
     private static Stack<TreeNode> stack = new Stack<>();
 
-    private TreeNode buildTree(int[] pre, int[]in){
-        //impl build tree
-        return null;
+    private TreeNode buildTree(int[] preorder, int[] inorder){
+        TreeNode root = null;
+        for(int pre = 0, in = 0; pre < preorder.length;) {
+
+            TreeNode node;
+            do {
+                node = new TreeNode(preorder[pre]);
+                if(root == null) {
+                    root = node;
+                }
+                if(!stack.isEmpty()) {
+                    if(set.contains(stack.peek())) {
+                        set.remove(stack.peek());
+                        stack.pop().right = node;
+                    } else {
+                        stack.peek().left = node;
+                    }
+                }
+                stack.push(node);
+            } while(preorder[pre++] != inorder[in] && pre < preorder.length);
+
+            node = null;
+            while(!stack.isEmpty() && in < inorder.length && stack.peek().value == inorder[in]) {
+                node = stack.pop();
+                in++;
+            }
+
+            if(node != null) {
+                set.add(node);
+                stack.push(node);
+
+            }
+        }
+        return root;
     }
 
     private void printInOrder(TreeNode node){
@@ -22,6 +53,15 @@ public class BinaryTree {
         printInOrder(node.right);
     }
 
+    private void printPostOrder(TreeNode node){
+        if (node == null){
+            return;
+        }
+        printPostOrder(node.left);
+        printPostOrder(node.right);
+        System.out.print(node.value + " ");
+    }
+
     public static void main(String[] args) {
         BinaryTree tree = new BinaryTree();
 
@@ -30,6 +70,6 @@ public class BinaryTree {
 
         TreeNode root = tree.buildTree(pre, in);
 
-        tree.printInOrder(root);
+        tree.printPostOrder(root);
     }
 }
