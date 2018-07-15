@@ -1,5 +1,8 @@
 package by.matrosov.bst.def;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class BinaryTree {
     private Node root;
 
@@ -34,18 +37,6 @@ public class BinaryTree {
         printPostOrder(node.right);
     }
 
-    private void printPostOrder(){
-        printPostOrder(root);
-    }
-
-    private void printPreOrder(){
-        printPreOrder(root);
-    }
-
-    private void printInOrder(){
-        printInOrder(root);
-    }
-
     private static void initTree(BinaryTree tree){
         tree.root = new Node(20);
         tree.root.left = new Node(8);
@@ -54,10 +45,6 @@ public class BinaryTree {
         tree.root.left.right = new Node(12);
         tree.root.left.right.left = new Node(10);
         tree.root.left.right.right = new Node(14);
-    }
-
-    private void printAllLevels(){
-        printAllLevels(root);
     }
 
     private void printAllLevels(Node root){
@@ -95,16 +82,33 @@ public class BinaryTree {
         }
     }
 
+    private boolean checkDuplicates(Node root){
+        Set<Integer> set = new HashSet<>();
+        return checkDuplicatesUtil(root, set);
+    }
+
+    private boolean checkDuplicatesUtil(Node root, Set<Integer> set){
+        if (root == null){
+            return false;
+        }
+
+        if (set.contains(root.value)){
+            return true;
+        }
+
+        set.add(root.value);
+
+        return checkDuplicatesUtil(root.left, set) || checkDuplicatesUtil(root.right, set);
+    }
+
     public static void main(String[] args) {
         BinaryTree tree = new BinaryTree();
         initTree(tree);
 
-        //tree.printPostOrder();
-        //System.out.println("\n");
-        //tree.printInOrder();
-        //System.out.println("\n");
-        //tree.printPreOrder();
-
-        tree.printAllLevels();
+        if (tree.checkDuplicates(tree.root)){
+            System.out.println("+");
+        }else {
+            System.out.println("-");
+        }
     }
 }
