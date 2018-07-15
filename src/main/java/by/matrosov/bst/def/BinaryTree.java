@@ -5,6 +5,7 @@ import java.util.Set;
 
 public class BinaryTree {
     private Node root;
+    private int maxVisitedLevel = 0;
 
     private BinaryTree() {
         root = null;
@@ -101,14 +102,28 @@ public class BinaryTree {
         return checkDuplicatesUtil(root.left, set) || checkDuplicatesUtil(root.right, set);
     }
 
+    private void printLeftViewUtil(Node node, int currentLevel){
+        if (node == null){
+            return;
+        }
+
+        if (currentLevel > maxVisitedLevel){
+            System.out.println(node.value);
+            maxVisitedLevel = currentLevel;
+        }
+
+        printLeftViewUtil(node.left, currentLevel + 1);
+        printLeftViewUtil(node.right,currentLevel + 1);
+    }
+
+    private void printLeftView(){
+        printLeftViewUtil(root, 1);
+    }
+
     public static void main(String[] args) {
         BinaryTree tree = new BinaryTree();
         initTree(tree);
 
-        if (tree.checkDuplicates(tree.root)){
-            System.out.println("+");
-        }else {
-            System.out.println("-");
-        }
+        tree.printLeftView();
     }
 }
