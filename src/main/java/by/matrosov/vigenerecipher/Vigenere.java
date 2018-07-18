@@ -9,34 +9,16 @@ public class Vigenere {
     private static List<String> table = new ArrayList<>();
 
     public static void main(String[] args) {
-        createVigenereTable(table);
-
         String encryptedText = "щмсез лщуэи ноюы хбсъххлю бщдияу фж юэячц ющзнщ, яч яо ынцдисеп юнцмьч йёф зьёамъор гкюядс: ёьз,отс,шлёз,нощя,цыяз,цпгмщс 40,20,5,26,25,28. гълпюрт хи шдьгсхх ь нрэруе о юъг.";
 
-        encryptedText = encryptedText.replaceAll(" ", "")
-                .replaceAll("\\d", "")
-                .replaceAll(",", "")
-                .replaceAll(":", "")
-                .replaceAll("\\.", "");
+        createVigenereTable(table);
+        encryptedText = removeNonLetterChars(encryptedText);
+        String keyString = createKeyString(encryptedText);
 
-        StringBuilder sbKey = new StringBuilder(KEY);
-        while (sbKey.length() < encryptedText.length()){
-            sbKey.append(KEY);
-        }
-
-        System.out.println(sbKey.toString());
+        System.out.println(keyString);
         System.out.println(encryptedText);
 
-        for (int i = 0; i < encryptedText.length(); i++) {
-
-            int j = 0;
-            while (sbKey.charAt(i) != table.get(j).charAt(0)){
-                j++;
-            }
-
-            int index = table.get(j).indexOf(encryptedText.charAt(i));
-            System.out.println(table.get(0).charAt(index));
-        }
+        decryptedText(encryptedText, keyString);
     }
 
     private static List<String> createVigenereTable(List<String> table){
@@ -50,12 +32,33 @@ public class Vigenere {
         return table;
     }
 
-    private String removeNonLetterChars(String s){
+    private static String removeNonLetterChars(String s){
         return s.replaceAll(" ", "")
                 .replaceAll("\\d", "")
                 .replaceAll(",", "")
                 .replaceAll(":", "")
                 .replaceAll("\\.", "");
+    }
+
+    private static String createKeyString(String encryptedText){
+        StringBuilder sbKey = new StringBuilder(KEY);
+        while (sbKey.length() < encryptedText.length()){
+            sbKey.append(KEY);
+        }
+        return sbKey.toString();
+    }
+
+    private static void decryptedText(String encryptedText, String keyString){
+        for (int i = 0; i < encryptedText.length(); i++) {
+
+            int j = 0;
+            while (keyString.charAt(i) != table.get(j).charAt(0)){
+                j++;
+            }
+
+            int index = table.get(j).indexOf(encryptedText.charAt(i));
+            System.out.print(table.get(0).charAt(index));
+        }
     }
 
     //int[] arr2 = {3, 2, 5, 1, 0, 4};
