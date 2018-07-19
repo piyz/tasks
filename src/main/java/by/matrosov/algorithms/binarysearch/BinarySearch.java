@@ -2,7 +2,7 @@ package by.matrosov.algorithms.binarysearch;
 
 public class BinarySearch {
 
-    private int binarySearch(int arr[], int left, int right, int x){
+    public int binarySearch(Integer arr[], int left, int right, int x){
         if (right >= left){
             int mid = left + (right - left) / 2;
 
@@ -20,7 +20,7 @@ public class BinarySearch {
 
     public static void main(String[] args) {
         BinarySearch binarySearch = new BinarySearch();
-        int arr[] = {2,3,4,10,40};
+        Integer arr[] = {2,3,4,10,40};
         int x = 10;
         int result = binarySearch.binarySearch(arr, 0, arr.length - 1, x);
 
