@@ -1,7 +1,6 @@
 package by.matrosov.bst.def;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class BinaryTree {
     private Node root;
@@ -24,9 +23,9 @@ public class BinaryTree {
         if (node == null){
             return;
         }
-        printPostOrder(node.left);
+        printInOrder(node.left);
         System.out.println(node.value + " ");
-        printPostOrder(node.right);
+        printInOrder(node.right);
     }
 
     private void printPreOrder(Node node){
@@ -34,8 +33,8 @@ public class BinaryTree {
             return;
         }
         System.out.println(node.value + " ");
-        printPostOrder(node.left);
-        printPostOrder(node.right);
+        printPreOrder(node.left);
+        printPreOrder(node.right);
     }
 
     private static void initTree(BinaryTree tree){
@@ -120,10 +119,49 @@ public class BinaryTree {
         printLeftViewUtil(root, 1);
     }
 
+    private void printTopView(){
+
+        class Item{
+            private Node node;
+            private int horizontalDistance;
+
+            private Item(Node node, int horizontalDistance) {
+                this.node = node;
+                this.horizontalDistance = horizontalDistance;
+            }
+        }
+
+        if (root == null){
+            return;
+        }
+
+        Set<Integer> set = new HashSet<>();
+        Stack<Item> stack = new Stack<>();
+        stack.add(new Item(root, 0));
+
+        while (!stack.isEmpty()){
+            Item item = stack.pop();
+            int distance = item.horizontalDistance;
+            Node node = item.node;
+
+            if (!set.contains(distance)){
+                set.add(distance);
+                System.out.println(node.value + " ");
+            }
+
+            if (node.left != null){
+                stack.add(new Item(node.left, distance - 1));
+            }
+            if (node.right != null){
+                stack.add(new Item(node.right, distance + 1));
+            }
+        }
+    }
+
     public static void main(String[] args) {
         BinaryTree tree = new BinaryTree();
         initTree(tree);
 
-        tree.printLeftView();
+        tree.printTopView();
     }
 }
