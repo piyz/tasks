@@ -1,4 +1,4 @@
-package by.matrosov.graphs.task1;
+package by.matrosov.algorithms.graphs.task1;
 
 import java.util.ArrayList;
 import java.util.HashSet;

@@ -1,4 +1,4 @@
-package by.matrosov.task2;
+package by.matrosov.tasks.task2;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package by.matrosov.immutableimpl;
+package by.matrosov.tasks.immutableimpl;
 
 import java.util.HashMap;
 import java.util.Map;

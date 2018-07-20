@@ -1,4 +1,4 @@
-package by.matrosov.recursion;
+package by.matrosov.tasks.recursion;
 
 public class Bottle {
     private int maxCapacity;

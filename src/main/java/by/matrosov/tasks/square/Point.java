@@ -1,4 +1,4 @@
-package by.matrosov.square;
+package by.matrosov.tasks.square;
 
 public class Point {
     private double x;

@@ -1,4 +1,4 @@
-package by.matrosov.square;
+package by.matrosov.tasks.square;
 
 import java.util.ArrayList;
 import java.util.HashSet;

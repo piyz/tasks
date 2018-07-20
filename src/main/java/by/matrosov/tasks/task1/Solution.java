@@ -1,4 +1,4 @@
-package by.matrosov.task1;
+package by.matrosov.tasks.task1;
 
 import java.io.*;
 import java.nio.file.Files;

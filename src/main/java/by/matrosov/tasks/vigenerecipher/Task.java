@@ -1,4 +1,4 @@
-package by.matrosov.vigenerecipher;
+package by.matrosov.tasks.vigenerecipher;
 
 import java.util.Optional;
 import java.util.stream.Stream;

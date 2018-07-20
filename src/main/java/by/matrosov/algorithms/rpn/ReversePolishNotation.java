@@ -1,4 +1,4 @@
-package by.matrosov.rpn;
+package by.matrosov.algorithms.rpn;
 
 import java.util.ArrayList;
 import java.util.Arrays;
