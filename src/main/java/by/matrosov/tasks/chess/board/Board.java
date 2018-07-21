@@ -1,5 +1,6 @@
 package by.matrosov.tasks.chess.board;
 
+import by.matrosov.tasks.chess.figures.Bishap;
 import by.matrosov.tasks.chess.figures.Color;
 import by.matrosov.tasks.chess.figures.Figure;
 import by.matrosov.tasks.chess.figures.Soldier;
@@ -30,7 +31,7 @@ public class Board {
 
     private void initFigures(){
         initPawn();
-        //initRook();
+        initBishap();
         //initHorse();
         //initElephant();
         //initKing();
@@ -43,13 +44,17 @@ public class Board {
             board.put(new Cell(6, i), new Soldier(Color.WHITE));
         }
     }
-    /*
-    private void initRook(){
-        board.put(new Cell(0,0), new Figure(Type.ROOK, Color.BLACK));
-        board.put(new Cell(0,7), new Figure(Type.ROOK, Color.BLACK));
-        board.put(new Cell(7,0), new Figure(Type.ROOK, Color.WHITE));
-        board.put(new Cell(7,7), new Figure(Type.ROOK, Color.WHITE));
+
+    private void initBishap(){
+        board.put(new Cell(0,0), new Bishap(Color.BLACK));
+        board.put(new Cell(0,7), new Bishap(Color.BLACK));
+        board.put(new Cell(7,0), new Bishap(Color.WHITE));
+        board.put(new Cell(7,7), new Bishap(Color.WHITE));
     }
+
+
+
+    /*
 
     private void initHorse(){
         board.put(new Cell(0,1), new Figure(Type.HORS, Color.BLACK));
