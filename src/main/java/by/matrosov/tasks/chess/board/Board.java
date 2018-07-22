@@ -30,7 +30,7 @@ public class Board {
         initPawn();
         initBishap();
         initHorse();
-        //initElephant();
+        initElephant();
         //initKing();
         //initQueen();
     }
@@ -56,15 +56,14 @@ public class Board {
         board.put(new Cell(7,6), new Horse(Color.WHITE));
     }
 
-
+    private void initElephant(){
+        board.put(new Cell(0,2), new Elephant(Color.BLACK));
+        board.put(new Cell(0,5), new Elephant(Color.BLACK));
+        board.put(new Cell(7,2), new Elephant(Color.WHITE));
+        board.put(new Cell(7,5), new Elephant(Color.WHITE));
+    }
 
     /*
-    private void initElephant(){
-        board.put(new Cell(0,2), new Figure(Type.ELEP, Color.BLACK));
-        board.put(new Cell(0,5), new Figure(Type.ELEP, Color.BLACK));
-        board.put(new Cell(7,2), new Figure(Type.ELEP, Color.WHITE));
-        board.put(new Cell(7,5), new Figure(Type.ELEP, Color.WHITE));
-    }
 
     private void initKing(){
         board.put(new Cell(0,3), new Figure(Type.KING, Color.BLACK));
