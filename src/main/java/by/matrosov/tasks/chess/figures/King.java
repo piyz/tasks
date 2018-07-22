@@ -7,9 +7,9 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-public class Bishap extends Figure {
+public class King extends Figure {
 
-    public Bishap(Color color) {
+    public King(Color color) {
         this.color = color;
     }
 
@@ -70,20 +70,71 @@ public class Bishap extends Figure {
                 }
             }
 
+            i = 1;
+            while (from.getX() - i > - 1 && from.getY() + i < 8){
+                Cell cell = new Cell(from.getX() - i, from.getY() + i);
+                if (board.getBoard().get(cell) == null){
+                    moves.add(cell);
+                    i++;
+                }else if (board.getBoard().get(cell).color != this.color){
+                    moves.add(cell);
+                    break;
+                }else {
+                    break;
+                }
+            }
+
+            i = 1;
+            while (from.getX() - i > - 1 && from.getY() - i > -1){
+                Cell cell = new Cell(from.getX() - i, from.getY() - i);
+                if (board.getBoard().get(cell) == null){
+                    moves.add(cell);
+                    i++;
+                }else if (board.getBoard().get(cell).color != this.color){
+                    moves.add(cell);
+                    break;
+                }else {
+                    break;
+                }
+            }
+
+            i = 1;
+            while (from.getX() + i < 8 && from.getY() + i < 8){
+                Cell cell = new Cell(from.getX() + i, from.getY() + i);
+                if (board.getBoard().get(cell) == null){
+                    moves.add(cell);
+                    i++;
+                }else if (board.getBoard().get(cell).color != this.color){
+                    moves.add(cell);
+                    break;
+                }else {
+                    break;
+                }
+            }
+
+            i = 1;
+            while (from.getX() + i < 8 && from.getY() - i > -1){
+                Cell cell = new Cell(from.getX() + i, from.getY() - i);
+                if (board.getBoard().get(cell) == null){
+                    moves.add(cell);
+                    i++;
+                }else if (board.getBoard().get(cell).color != this.color){
+                    moves.add(cell);
+                    break;
+                }else {
+                    break;
+                }
+            }
+
             Optional<Cell> found = moves.stream()
                     .filter(cell -> cell.getX() == to.getX() && cell.getY() == to.getY()).findFirst();
-            if (found.isPresent()){
-                Figure figure = board.getBoard().get(to);
-
-                return figure == null || figure.color != this.color;
-            }
+            return found.isPresent();
         }
-
         return false;
     }
 
     @Override
     public String toString() {
-        return "Bishap::" + color;
+        return "King::" + color;
     }
 }

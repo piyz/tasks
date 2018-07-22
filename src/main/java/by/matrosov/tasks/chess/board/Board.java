@@ -31,8 +31,8 @@ public class Board {
         initBishap();
         initHorse();
         initElephant();
-        //initKing();
-        //initQueen();
+        initKing();
+        initQueen();
     }
 
     private void initPawn(){
@@ -63,18 +63,15 @@ public class Board {
         board.put(new Cell(7,5), new Elephant(Color.WHITE));
     }
 
-    /*
-
     private void initKing(){
-        board.put(new Cell(0,3), new Figure(Type.KING, Color.BLACK));
-        board.put(new Cell(7,3), new Figure(Type.KING, Color.WHITE));
+        board.put(new Cell(0,3), new King(Color.BLACK));
+        board.put(new Cell(7,3), new King(Color.WHITE));
     }
 
     private void initQueen(){
-        board.put(new Cell(0,4), new Figure(Type.QWEE, Color.BLACK));
-        board.put(new Cell(7,4), new Figure(Type.QWEE, Color.WHITE));
+        board.put(new Cell(0,4), new Queen(Color.BLACK));
+        board.put(new Cell(7,4), new Queen(Color.WHITE));
     }
-     */
 
     public void printBoard(){
         board.forEach((cell, figure) -> {
