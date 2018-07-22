@@ -1,9 +1,6 @@
 package by.matrosov.tasks.chess.board;
 
-import by.matrosov.tasks.chess.figures.Bishap;
-import by.matrosov.tasks.chess.figures.Color;
-import by.matrosov.tasks.chess.figures.Figure;
-import by.matrosov.tasks.chess.figures.Soldier;
+import by.matrosov.tasks.chess.figures.*;
 
 import java.util.TreeMap;
 
@@ -32,7 +29,7 @@ public class Board {
     private void initFigures(){
         initPawn();
         initBishap();
-        //initHorse();
+        initHorse();
         //initElephant();
         //initKing();
         //initQueen();
@@ -52,17 +49,16 @@ public class Board {
         board.put(new Cell(7,7), new Bishap(Color.WHITE));
     }
 
+    private void initHorse(){
+        board.put(new Cell(0,1), new Horse(Color.BLACK));
+        board.put(new Cell(0,6), new Horse(Color.BLACK));
+        board.put(new Cell(7,1), new Horse(Color.WHITE));
+        board.put(new Cell(7,6), new Horse(Color.WHITE));
+    }
+
 
 
     /*
-
-    private void initHorse(){
-        board.put(new Cell(0,1), new Figure(Type.HORS, Color.BLACK));
-        board.put(new Cell(0,6), new Figure(Type.HORS, Color.BLACK));
-        board.put(new Cell(7,1), new Figure(Type.HORS, Color.WHITE));
-        board.put(new Cell(7,6), new Figure(Type.HORS, Color.WHITE));
-    }
-
     private void initElephant(){
         board.put(new Cell(0,2), new Figure(Type.ELEP, Color.BLACK));
         board.put(new Cell(0,5), new Figure(Type.ELEP, Color.BLACK));
