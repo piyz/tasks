@@ -76,6 +76,24 @@ public class LinkedList{
         }
     }
 
+    private void removeBetweenTwoNodes(int m, int n){
+        reverse();
+
+        Node node = head;
+        int count = 0;
+        while (count < m){
+            node = node.next;
+            count++;
+        }
+        Node temp = node;
+
+        while (count < n && node != null){
+            node = node.next;
+            count++;
+        }
+        temp.next = node;
+    }
+
     public static void main(String[] args) {
         LinkedList list = new LinkedList();
     }

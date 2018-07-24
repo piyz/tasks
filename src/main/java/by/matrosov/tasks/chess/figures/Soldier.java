@@ -46,11 +46,7 @@ public class Soldier extends Figure{
 
             Optional<Cell> found = moves.stream()
                     .filter(cell -> cell.getX() == to.getX() && cell.getY() == to.getY()).findFirst();
-            if (found.isPresent()){
-                Figure figure = board.getBoard().get(to);
-
-                return figure == null || figure.color != this.color;
-            }
+            return found.isPresent();
         }
 
         return false;
