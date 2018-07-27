@@ -53,4 +53,32 @@ public class MyList<T>{
         data[size - 1] = null;
         size--;
     }
+
+    public void delete(int index){
+        for (int i = index + 1; i < size - 1; i++) {
+            data[i] = data[i + 1];
+        }
+        data[size - 1] = null;
+        size--;
+    }
+
+    public void delete(T value){
+        for (int i = 0; i < size; i++) {
+            if (data[i].equals(value)){
+                delete(i);
+            }
+        }
+    }
+
+    public int countWords(int L, int i, char c){
+        int count = 0;
+        for (int j = 0; j < size; j++) {
+            if (data[j].toString().length() == L){
+                if (data[j].toString().charAt(i) == c){
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
 }
