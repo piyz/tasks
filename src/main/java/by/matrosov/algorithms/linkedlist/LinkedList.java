@@ -94,6 +94,30 @@ public class LinkedList{
         temp.next = node;
     }
 
+    private void removeBetweenEveryTwoNodes(int m, int n){
+        Node node = head;
+        int count;
+
+        while (node != null){
+            count = 0;
+            while (count < n - 1){
+                node = node.next;
+                count++;
+                if (node == null){
+                    return;
+                }
+            }
+            Node temp = node;
+
+            count = 0;
+            while (count < m + 1 && node != null){
+                node = node.next;
+                count++;
+            }
+            temp.next = node;
+        }
+    }
+
     public static void main(String[] args) {
         LinkedList list = new LinkedList();
     }
