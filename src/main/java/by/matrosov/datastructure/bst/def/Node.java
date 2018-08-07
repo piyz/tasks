@@ -1,4 +1,4 @@
-package by.matrosov.bst.def;
+package by.matrosov.datastructure.bst.def;
 
 public class Node {
     int value;

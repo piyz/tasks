@@ -1,4 +1,4 @@
-package by.matrosov.bst.validatetree;
+package by.matrosov.datastructure.bst.validatetree;
 
 public class BinaryTree {
 

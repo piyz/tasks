@@ -1,4 +1,4 @@
-package by.matrosov.bst.buildtree;
+package by.matrosov.datastructure.bst.buildtree;
 
 import java.util.HashSet;
 import java.util.Set;

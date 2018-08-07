@@ -1,4 +1,4 @@
-package by.matrosov.algorithms.linkedlist;
+package by.matrosov.datastructure.linkedlist;
 
 
 public class LinkedList{

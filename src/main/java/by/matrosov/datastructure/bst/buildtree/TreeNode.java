@@ -1,4 +1,4 @@
-package by.matrosov.bst.buildtree;
+package by.matrosov.datastructure.bst.buildtree;
 
 public class TreeNode {
     int value;

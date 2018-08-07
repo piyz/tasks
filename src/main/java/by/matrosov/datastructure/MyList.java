@@ -1,4 +1,4 @@
-package by.matrosov.algorithms;
+package by.matrosov.datastructure;
 
 public class MyList<T>{
     private T[] data;

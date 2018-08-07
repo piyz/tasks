@@ -1,4 +1,4 @@
-package by.matrosov.stack;
+package by.matrosov.datastructure.stack;
 
 import java.util.Stack;
 
