@@ -7,7 +7,7 @@ public class Window extends JFrame {
     public Window() {
         setTitle("Snake");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(320,345);
+        setSize(320,358);
         setVisible(true);
         setLocation(500, 300);
         add(new Game());

@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.Random;
 
 public class Game extends JPanel implements ActionListener {
@@ -33,6 +35,8 @@ public class Game extends JPanel implements ActionListener {
         setBackground(Color.GRAY);
         initImage();
         initGame();
+        addKeyListener(new KeyListener());
+        setFocusable(true);
     }
 
     private void initGame(){
@@ -106,6 +110,10 @@ public class Game extends JPanel implements ActionListener {
             for (int i = 0; i < currentCellSize; i++) {
                 g.drawImage(cell, x[i], y[i], this);
             }
+        }else {
+            String s = "GameOver";
+            g.setColor(Color.black);
+            g.drawString(s,120,SIZE/2);
         }
     }
 
@@ -117,5 +125,30 @@ public class Game extends JPanel implements ActionListener {
             move();
         }
         repaint();
+    }
+
+    class KeyListener extends KeyAdapter{
+        @Override
+        public void keyPressed(KeyEvent e) {
+            super.keyPressed(e);
+            int key = e.getKeyCode();
+            if (key == KeyEvent.VK_LEFT && !right){
+                left = true;
+                up = false;
+                down = false;
+            }else if (key == KeyEvent.VK_RIGHT && !left){
+                right = true;
+                up = false;
+                down = false;
+            }else if (key == KeyEvent.VK_UP && !down){
+                up = true;
+                left = false;
+                right = false;
+            }else if (key == KeyEvent.VK_DOWN && !up){
+                down = true;
+                left = false;
+                right = false;
+            }
+        }
     }
 }
