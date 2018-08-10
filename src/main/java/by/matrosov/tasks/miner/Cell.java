@@ -1,13 +1,30 @@
 package by.matrosov.tasks.miner;
 
-public class Cell {
-    private Type type;
+import by.matrosov.tasks.miner.types.Inner;
+import by.matrosov.tasks.miner.types.Outer;
 
-    public Cell(Type type) {
-        this.type = type;
+public class Cell {
+    private Inner inner;
+    private Outer outer;
+
+    public Cell(Inner inner, Outer outer) {
+        this.inner = inner;
+        this.outer = outer;
     }
 
-    Type getType() {
-        return type;
+    Inner getInner() {
+        return inner;
+    }
+
+    Outer getOuter() {
+        return outer;
+    }
+
+    void setInner(Inner inner) {
+        this.inner = inner;
+    }
+
+    void setOuter(Outer outer) {
+        this.outer = outer;
     }
 }
