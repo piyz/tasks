@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Window extends JFrame {
-    public Window() throws HeadlessException {
+    private Window() throws HeadlessException {
         setSize(506,525); //500x500 (+25 pix upper line, +6 right)
         setResizable(false);
         setVisible(true);

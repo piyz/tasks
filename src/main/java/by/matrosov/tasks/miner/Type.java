@@ -1,10 +1,17 @@
 package by.matrosov.tasks.miner;
 
 public enum  Type {
+    ONE,
+    TWO,
+    THREE,
+    FOUR,
+    FIVE,
+    SIX,
+    SEVEN,
+    EIGHT,
     BOMB,
-    FLAGGED,
+    BOMBED,
     OPEN,
-    CLOSED;
-
-    public Object image;
+    CLOSED,
+    FLAGGED
 }
