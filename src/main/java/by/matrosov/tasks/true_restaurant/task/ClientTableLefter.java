@@ -2,11 +2,11 @@ package by.matrosov.tasks.true_restaurant.task;
 
 import by.matrosov.tasks.true_restaurant.Queue;
 
-public class Manager implements Runnable {
+public class ClientTableLefter implements Runnable {
 
     private Queue queue;
 
-    public Manager(Queue queue) {
+    public ClientTableLefter(Queue queue) {
         this.queue = queue;
     }
 
@@ -14,10 +14,10 @@ public class Manager implements Runnable {
     public void run() {
         while (true){
             try {
-                Thread.sleep(5000);
-                Thread.currentThread().setName(":: client manager");
-                queue.get();
-                Thread.sleep(5000);
+                Thread.currentThread().setName(":: client table-lefter");
+                Thread.sleep(20000);
+                queue.left();
+                Thread.sleep(10000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

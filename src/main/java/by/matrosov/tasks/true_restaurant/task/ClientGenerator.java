@@ -1,16 +1,16 @@
 package by.matrosov.tasks.true_restaurant.task;
 
-import by.matrosov.tasks.true_restaurant.Tunnel;
+import by.matrosov.tasks.true_restaurant.Queue;
 import by.matrosov.tasks.true_restaurant.model.Client;
 
 import java.util.Random;
 
 public class ClientGenerator implements Runnable{
 
-    private Tunnel tunnel;
+    private Queue queue;
 
-    public ClientGenerator(Tunnel tunnel) {
-        this.tunnel = tunnel;
+    public ClientGenerator(Queue queue) {
+        this.queue = queue;
     }
 
     @Override
@@ -19,7 +19,7 @@ public class ClientGenerator implements Runnable{
             try {
                 Thread.currentThread().setName(":: client generator");
                 Client client = new Client(getRandomSize());
-                tunnel.add(client);
+                queue.add(client);
                 Thread.sleep(10000);
             } catch (InterruptedException e) {
                 e.printStackTrace();

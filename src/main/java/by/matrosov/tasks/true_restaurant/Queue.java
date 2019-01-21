@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class Tunnel {
+public class Queue {
     private static final int MIN_SIZE = 0;
     private static final int MAX_SIZE = 5;
 
@@ -17,7 +17,7 @@ public class Tunnel {
 
     private int n;
 
-    public Tunnel() {
+    public Queue() {
         this.queueClients = Collections.synchronizedList(new ArrayList<>());
         this.tables = Collections.synchronizedList(new ArrayList<>());
         initTables();
@@ -34,9 +34,9 @@ public class Tunnel {
             if (queueClients.size() < MAX_SIZE){
                 notifyAll();
                 queueClients.add(client);
-                System.out.println("coming client " + client.getSize() + " :: " + queueClients + " " + Thread.currentThread().getName());
+                System.out.printf("coming client %d :: %s %s \n", client.getSize(), queueClients, Thread.currentThread().getName());
             }else {
-                System.out.println("no place in queue " + Thread.currentThread().getName());
+                System.out.printf("no place in queue %s \n", Thread.currentThread().getName());
                 wait();
             }
         } catch (InterruptedException e) {
@@ -49,9 +49,9 @@ public class Tunnel {
             if (!queueClients.isEmpty()){
                 notifyAll();
                 queueClients.remove(new Random().nextInt(queueClients.size()));
-                System.out.println("left client" + " :: " + queueClients + " " + Thread.currentThread().getName());
+                System.out.printf("left client :: %s %s \n", queueClients, Thread.currentThread().getName());
             }else {
-                System.out.println("queue is empty " + Thread.currentThread().getName());
+                System.out.printf("queue is empty %s \n", Thread.currentThread().getName());
                 wait();
             }
         } catch (InterruptedException e) {
@@ -70,19 +70,35 @@ public class Tunnel {
                         move2table(queueClients.get(i));
                         i--;
                     }else {
-                        System.out.println("no tables for client " + queueClients.get(i).getSize()+ " :: " + queueClients + Thread.currentThread().getName());
                         count++;
+                        System.out.printf("no tables for client %d :: %s %s \n", queueClients.get(i).getSize(), queueClients, Thread.currentThread().getName());
                     }
                 }
-                if (queueClients.size() == count){
+                if (count == queueClients.size()){
                     wait();
                 }
 
             }else {
-                System.out.println("queue is empty " + Thread.currentThread().getName());
+                System.out.printf("queue is empty %s \n", Thread.currentThread().getName());
                 wait();
             }
         }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+    }
+
+    public synchronized void left(){
+        try {
+            Table table = getTables().get(new Random().nextInt(5));
+            if (!table.getClientList().isEmpty()){
+                notifyAll();
+                table.getClientList().remove(new Random().nextInt(table.getClientList().size()));
+                System.out.printf("client left from table %d :: %s :: %s %s \n", table.getSize(), queueClients, getTables(), Thread.currentThread().getName());
+            }else {
+                wait();
+                System.out.printf("no one left :: %s %s \n", queueClients, Thread.currentThread().getName());
+            }
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
@@ -120,7 +136,7 @@ public class Tunnel {
     private void move2table(Client client){
         getTables().get(n).getClientList().add(client);
         queueClients.remove(client);
-        System.out.println("client move to table " + (n + 2) + " :: " + queueClients + " :: " + getTables() + " " + Thread.currentThread().getName());
+        System.out.printf("client move to table %d :: %s :: %s %s \n", n + 2, queueClients, getTables(), Thread.currentThread().getName());
     }
 
     public List<Table> getTables() {

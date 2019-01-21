@@ -1,13 +1,13 @@
 package by.matrosov.tasks.true_restaurant.task;
 
-import by.matrosov.tasks.true_restaurant.Tunnel;
+import by.matrosov.tasks.true_restaurant.Queue;
 
-public class ClientLefter implements Runnable{
+public class ClientQueueLefter implements Runnable{
 
-    private Tunnel tunnel;
+    private Queue queue;
 
-    public ClientLefter(Tunnel tunnel) {
-        this.tunnel = tunnel;
+    public ClientQueueLefter(Queue queue) {
+        this.queue = queue;
     }
 
     @Override
@@ -15,8 +15,8 @@ public class ClientLefter implements Runnable{
         while (true){
             try {
                 Thread.sleep(30000);
-                Thread.currentThread().setName(":: client lefter");
-                tunnel.remove();
+                Thread.currentThread().setName(":: client queue-lefter");
+                queue.remove();
                 Thread.sleep(30000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
